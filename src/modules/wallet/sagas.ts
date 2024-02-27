@@ -25,7 +25,7 @@ import { getAddress } from "./selectors";
 const windowWithEthereum = window as unknown as WindowWithEthereum;
 
 /* This is the Dummy Token address, it identifies the token contract once deployed */
-export const TOKEN_ADDRESS = process.env.REACT_APP_TOKEN_ADDRESS!;
+export const TOKEN_ADDRESS = process.env.TUTI_TOKEN_ADDRESS!;
 if (!TOKEN_ADDRESS) {
   console.error(`Missing env variable REACT_APP_TOKEN_ADDRESS`);
 }
