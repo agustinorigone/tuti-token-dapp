@@ -1,14 +1,28 @@
-import { Switch, Route } from 'react-router-dom'
+import {
+  Switch,
+  Route,
+  Redirect,
+  BrowserRouter as Router,
+} from "react-router-dom";
 
-import { locations } from '../../modules/routing/locations'
-import { App } from '../App'
+import { locations } from "../../modules/routing/locations";
+import { App } from "../App";
+import { Burn } from "../Burn";
+import { Mint } from "../Mint";
+import { Transfer } from "../Transfer";
 
 const Routes = () => {
   return (
-    <Switch>
-      <Route exact path={locations.root()} component={App} />
-    </Switch>
-  )
-}
+    <Router>
+      <Switch>
+        <Route exact path={locations.root()} component={App} />
+        <Route exact path={locations.burn()} component={Burn} />
+        <Route exact path={locations.transfer()} component={Transfer} />
+        <Route exact path={locations.mint()} component={Mint} />
+        <Redirect to={locations.root()} />
+      </Switch>
+    </Router>
+  );
+};
 
-export default Routes
+export default Routes;

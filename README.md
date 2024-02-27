@@ -1,46 +1,30 @@
-# Getting Started with Create React App
+# Dummy Token UI
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A simple UI for a [Dummy Token](https://github.com/decentraland/dummy-token). This frontend allows the user to connect their wallet and see their address. It is built using `react` + `redux` + `redux-saga`.
 
-## Available Scripts
+# Directory structure and standards
 
-In the project directory, you can run:
+The repository splits the `redux` logic into `modules`, which contain all the actions/sagas/reducer/selectors for a specific domain. The `react` components can be found under the `components` directory, each component has its own directory which contains always a `.tsx` file with the component itself and a `.css` file with its styles. The components are always pure, and if they need to be connected to the redux store it is done by wrapping it with a `.container.tsx` file that maps the necessary properties and callbacks to extract the data from the store and dispatch the required actions.
 
-### `npm start`
+# Task
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The current state of the frontend allows the user to connect their wallet and see their address. Your task is add the following features:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- Allow the user to see their Dummy Token balance once their wallet is connected
+- Allow the user to transfer Dummy Tokens
 
-### `npm test`
+To achieve this you will need to modify the existing redux module and/or add new ones, also you will need to adapt the react components to allow the user to fullfil all the necessary requirements by modifying the existing components/containers and/or adding new ones as well.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+You will need to make use of `decentraland-ui` components to build the missing parts of the frontend. You can see examples of the available components here: [Decentraland UI](https://ui.decentraland.org/).
 
-### `npm run build`
+The final state of the frontend should look something like this:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![Screencast](https://user-images.githubusercontent.com/2781777/115337070-bf24b980-a176-11eb-89e5-d4690893271a.gif)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Setup
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Run `cp .env.example .env` and fill the environment variables
+2. Run `npm install`
+3. Run `npm start`
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+You will also need to setup a local ethereum development environment and deploy the Dummy Token there, to do that [follow these instructions](https://github.com/decentraland/dummy-token#setup).

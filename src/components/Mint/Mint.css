@@ -1,0 +1,13 @@
+.Mint .ui.card {
+  padding: 16px;
+}
+
+.Mint .error {
+  margin-top: 20px;
+  color: var(--primary);
+}
+
+.Mint .ui button {
+  margin-top: 20px;
+  width: 100%;
+}

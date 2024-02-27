@@ -1,7 +1,3 @@
-import { WalletState } from "./wallet/types";
-import { RouterState } from 'connected-react-router'
+import { reducer } from './reducer'
 
-export type RootState = {
-  wallet: WalletState,
-  router: RouterState
-}
+export type RootState = ReturnType<typeof reducer>

@@ -1,0 +1,13 @@
+.Burn .ui.card {
+  padding: 16px;
+}
+
+.Burn .error {
+  margin-top: 20px;
+  color: var(--primary);
+}
+
+.Burn .ui button {
+  margin-top: 20px;
+  width: 100%;
+}

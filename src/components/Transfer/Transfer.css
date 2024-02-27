@@ -1,0 +1,17 @@
+.Transfer .ui.card {
+  padding: 16px;
+}
+
+.Transfer .error {
+  margin-top: 20px;
+  color: var(--primary);
+}
+
+.Transfer .ui button {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.Transfer .ui input {
+  margin-top: 10px;
+}

@@ -1,20 +1,16 @@
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux'
-import { ConnectedRouter } from 'connected-react-router'
-import { Routes } from './components/Routes'
-import { Header } from './components/Header'
-import { Footer } from './components/Footer'
-import { store, history } from './modules/store'
+import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
 
-require('dotenv').config()
+import "decentraland-ui/lib/styles.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Routes } from "./components/Routes";
+import { store } from "./modules/store";
+
+require("dotenv").config();
 
 ReactDOM.render(
   <Provider store={store}>
-    <Header />
-    <ConnectedRouter history={history}>
-      <Routes />
-    </ConnectedRouter>
-    <Footer />
+    <Routes />
   </Provider>,
-  document.getElementById('root')
-)
+  document.getElementById("root")
+);

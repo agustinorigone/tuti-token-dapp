@@ -1,23 +1,30 @@
-import { createBrowserHistory } from 'history'
-import { applyMiddleware, createStore } from 'redux'
-import { routerMiddleware } from 'connected-react-router'
-import createSagasMiddleware from 'redux-saga'
-import { createLogger } from 'redux-logger'
-import { createRootReducer } from './reducer'
-import { sagas } from './sagas'
+import { applyMiddleware, createStore } from "redux";
+import createSagasMiddleware from "redux-saga";
+import { createLogger } from "redux-logger";
+import { persistReducer, persistStore } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 
-const history = createBrowserHistory()
-const rootReducer = createRootReducer(history)
+import { reducer } from "./reducer";
+import { sagas } from "./sagas";
 
-const historyMiddleware = routerMiddleware(history)
-const sagasMiddleware = createSagasMiddleware()
+const persistConfig = {
+  key: "root",
+  storage,
+};
+
+const persistedReducer = persistReducer(persistConfig, reducer);
+
+const sagasMiddleware = createSagasMiddleware();
 const loggerMiddleware = createLogger({
   collapsed: () => true,
-})
+});
 
-const middleware = applyMiddleware(historyMiddleware, sagasMiddleware, loggerMiddleware)
-const store = createStore(rootReducer, middleware)
+const middleware = applyMiddleware(sagasMiddleware, loggerMiddleware);
 
-sagasMiddleware.run(sagas)
+const store = createStore(persistedReducer, middleware);
 
-export { store, history }
+const persistor = persistStore(store);
+
+sagasMiddleware.run(sagas);
+
+export { store, persistor };
