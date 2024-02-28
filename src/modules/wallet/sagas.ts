@@ -20,6 +20,7 @@ import {
 } from "./actions";
 import { WindowWithEthereum } from "./types";
 import { getAddress } from "./selectors";
+import { formatBigNumber } from "../../utils/numbers";
 
 // The regular `window` object with `ethereum` injected by MetaMask
 const windowWithEthereum = window as unknown as WindowWithEthereum;
@@ -32,9 +33,10 @@ if (!TOKEN_ADDRESS) {
 
 export const TOKEN_ABI = [
   "function symbol() view returns (string)",
-  "function balanceOf(address) view returns (uint)",
+  "function balanceOf(address account) external view returns (uint256)",
   "function transfer(address to, uint amount)",
   "function mint(uint256 amount) external",
+  "function decimals() view returns (uint8)",
 ];
 
 export function* walletSaga() {
@@ -56,14 +58,11 @@ function* handleConnectWalletRequest() {
     const token = new ethers.Contract(TOKEN_ADDRESS, TOKEN_ABI, provider);
     const balance: string = yield call(() => token.balanceOf(address));
     const symbol: string = yield call(() => token.symbol());
+    const decimals: string = yield call(() => token.decimals());
 
-    yield put(
-      connectWalletSuccess(
-        address,
-        Number(ethers.utils.formatEther(balance.toString())).toFixed(2),
-        symbol
-      )
-    );
+    const formattedBalance = formatBigNumber(balance, decimals);
+
+    yield put(connectWalletSuccess(address, formattedBalance, symbol));
   } catch (error: any) {
     yield put(connectWalletFailure(error.message));
   }
