@@ -34,9 +34,10 @@ if (!TOKEN_ADDRESS) {
 export const TOKEN_ABI = [
   "function symbol() view returns (string)",
   "function balanceOf(address account) external view returns (uint256)",
-  "function transfer(address to, uint amount)",
+  "function transfer(address to, uint256 amount) external",
   "function mint(uint256 amount) external",
-  "function decimals() view returns (uint8)",
+  "function burn(uint256 value) external",
+  "function decimals() public view virtual returns (uint8)",
 ];
 
 export function* walletSaga() {
